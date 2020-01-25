@@ -39,26 +39,26 @@ public class MusicPlayer {
 
     public void playSong(song newSong) {
         currentSong = newSong;
-        System.out.println("Now Playing "+ currentSong.songName + ".");
+        System.out.println("Now Playing "+ currentSong.songName + " - " + currentSong.songAlbum + " - " + currentSong.songArtist);
     }
 
     public void likeOrDislikeSong() {
        currentSong.liked = !currentSong.liked;
-       System.out.println("Song Liked");
+       System.out.println(currentSong.songName + " Liked");
     }
 
     public void nextSong() {
         playedSongs.add(currentSong);
         currentSong = queue.get(0);
         queue.remove(0);
-        System.out.println("Now Playing "+ currentSong.songName + ".");
+        System.out.println("Now Playing "+ currentSong.songName + " - " + currentSong.songAlbum + " - " + currentSong.songArtist);
     }
 
     public void prevSong() {
         queue.add(0, playedSongs.get(playedSongs.size()));
         currentSong = playedSongs.get(playedSongs.size());
         playedSongs.remove(currentSong);
-        System.out.println("Now Playing "+ currentSong.songName + ".");
+        System.out.println("Now Playing "+ currentSong.songName + " - " + currentSong.songAlbum + " - " + currentSong.songArtist);
     }
 
     public void shuffleQueue() {
