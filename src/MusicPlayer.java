@@ -20,8 +20,6 @@ public class MusicPlayer {
     ArrayList<song> playedSongs;
 
 
-
-
     public MusicPlayer (){
         queue = new ArrayList<>();
         playedSongs = new ArrayList<>();
@@ -37,8 +35,8 @@ public class MusicPlayer {
         queue.addAll(playlist);
     }
 
-    public void playSong(String name) {
-
+    public void playSong(song newSong) {
+        currentSong = newSong;
     }
 
     public void likeOrDislikeSong() {
