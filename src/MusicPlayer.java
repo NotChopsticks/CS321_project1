@@ -18,6 +18,7 @@ public class MusicPlayer {
     Random shuffler = null;
     song currentSong;
     ArrayList<song> playedSongs;
+    Library myLibrary;
 
 
     public MusicPlayer (){
@@ -25,6 +26,20 @@ public class MusicPlayer {
         playedSongs = new ArrayList<>();
         shuffler = new Random();
         currentSong = null;
+        myLibrary = new Library();
+    }
+
+    public void addToLibrary(song newSong){
+        myLibrary.addSong(newSong);
+        System.out.println(newSong.songName + " added to Library");
+    }
+
+    public void addToLibrary(ArrayList<song> playlist){
+        for (int i = 0; i < playlist.size(); i++) {
+            myLibrary.addSong(playlist.get(i));
+            System.out.println(playlist.get(i).songName + " added to Library");
+        }
+
     }
 
     public void addToQueue(song newSong) {

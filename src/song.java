@@ -13,7 +13,7 @@ public class song {
 
     }
 
-    public song(String name, String lyrics, String artist, String album){
+    public song(String name, String artist, String album){
         songName = name;
         //songlyrics = lyrics;
         songArtist = artist;

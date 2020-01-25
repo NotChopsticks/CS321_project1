@@ -18,5 +18,14 @@ public class Library {
         MusicLibrary.add(newSong);
     }
 
+    public void removeSong (song targetSong){
+        MusicLibrary.remove(targetSong);
+    }
+
+    public void addToLiked (song newSong){
+        liked.add(newSong);
+
+    }
+
 
 }
