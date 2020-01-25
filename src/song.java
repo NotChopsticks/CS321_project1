@@ -1,30 +1,27 @@
 public class song {
     String songName;
-    String lyrics;
+    //String songlyrics;
+    String songArtist;
+    String songAlbum;
     boolean liked;
-    boolean disliked;
-    boolean inLibrary;
-
 
     public song(){
         songName = "";
-        lyrics = "";
-        liked = false;
-        disliked = false;
-        inLibrary = false;
+        //songlyrics = "";
+        songArtist = "";
+        songAlbum = "";
+
     }
 
-    public song(String name){
+    public song(String name, String lyrics, String artist, String album){
         songName = name;
-        lyrics = "";
-        liked = false;
-        disliked = false;
-        inLibrary = false;
+        //songlyrics = lyrics;
+        songArtist = artist;
+        songAlbum = album;
+
     }
 
-    public void addLyrics(String newLyrics) {
-        lyrics = newLyrics;
-    }
+
 
 
 
