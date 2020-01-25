@@ -11,8 +11,6 @@ import java.util.Random;
 
 
 public class MusicPlayer {
-<<<<<<< Updated upstream
-=======
     ArrayList<song> MusicLibrary;
     ArrayList<song> queue;
     ArrayList<song> recommended;
@@ -23,7 +21,6 @@ public class MusicPlayer {
     song currentSong;
 
 
->>>>>>> Stashed changes
 
     public MusicPlayer (){
         ArrayList<song> MusicLibrary;
