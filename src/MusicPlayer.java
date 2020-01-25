@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -11,28 +12,46 @@ import java.util.Random;
 
 
 public class MusicPlayer {
-    ArrayList<song> MusicLibrary;
     ArrayList<song> queue;
-    ArrayList<song> recommended;
-    ArrayList<song> liked;
-    ArrayList<song> disliked;
     Random shuffler = null;
     song currentSong;
+    ArrayList<song> playedSongs;
 
 
 
     public MusicPlayer (){
-        MusicLibrary = new ArrayList<>();
         queue = new ArrayList<>();
-        recommended = new ArrayList<>();
-        liked = new ArrayList<>();
-        disliked = new ArrayList<>();
+        playedSongs = new ArrayList<>();
         shuffler = new Random();
-        currentSong = new song();
+        currentSong = null;
+    }
+
+    public void addToQueue(song newSong) {
+        queue.add(newSong);
+    }
+
+    public void addToQueue(ArrayList<song> playlist) {
+        queue.addAll(playlist);
+    }
+
+    public void playSong(String name) {
 
     }
 
-    public void likeSong() {
+    public void likeOrDislikeSong() {
+       currentSong.liked = !currentSong.liked;
+    }
+
+    public void nextSong() {
+        playedSongs.add(currentSong);
+        currentSong = queue.get(0);
+        queue.remove(0);
+    }
+
+    public void prevSong() {
+        queue.add(0, playedSongs.get(playedSongs.size()));
+        currentSong = playedSongs.get(playedSongs.size());
+        playedSongs.remove(currentSong);
 
     }
 
