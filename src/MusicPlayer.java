@@ -12,11 +12,13 @@ import java.util.Random;
 
 
 public class MusicPlayer {
+
     ArrayList<song> queue;
     ArrayList<song> shuffledQueue;
     Random shuffler = null;
     song currentSong;
     ArrayList<song> playedSongs;
+
 
 
 
@@ -56,7 +58,20 @@ public class MusicPlayer {
 
     }
 
+    public void shuffleQueue() {
+        ArrayList<song> originalQueue = queue;
+        
+        int index;
 
+        for (int i = 0; i < queue.size(); i++) {
+            index = shuffler.nextInt(originalQueue.size());
+            shuffledQueue.add(originalQueue.get(index));
+            originalQueue.remove(index);
+        }
+        
+        queue = shuffledQueue;
+        
+    }
 
 
 
