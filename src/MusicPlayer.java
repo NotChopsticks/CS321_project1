@@ -13,6 +13,7 @@ import java.util.Random;
 
 public class MusicPlayer {
     ArrayList<song> queue;
+    ArrayList<song> shuffledQueue;
     Random shuffler = null;
     song currentSong;
     ArrayList<song> playedSongs;
