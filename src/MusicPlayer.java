@@ -102,8 +102,8 @@ public class MusicPlayer {
             System.out.println("No Songs have been played");
             return;
         }
-        queue.add(0, playedSongs.get(playedSongs.size()));
-        currentSong = playedSongs.get(playedSongs.size());
+        queue.add(0, currentSong);
+        currentSong = playedSongs.get(playedSongs.size()-1);
         playedSongs.remove(currentSong);
         System.out.println("Now Playing "+ currentSong.songName + " - " + currentSong.songAlbum + " - " + currentSong.songArtist);
     }
