@@ -10,7 +10,6 @@ public class song {
         //songlyrics = "";
         songArtist = "";
         songAlbum = "";
-
     }
 
     public song(String name, String artist, String album){

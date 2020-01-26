@@ -1,6 +1,12 @@
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
+
+
 
 //- Music Player
 //- Queue/Playlist
@@ -21,17 +27,21 @@ public class MusicPlayer {
     Library myLibrary;
 
 
-    public MusicPlayer (){
+
+
+    public MusicPlayer()  {
         queue = new ArrayList<>();
         playedSongs = new ArrayList<>();
         shuffler = new Random();
         currentSong = null;
         myLibrary = new Library();
+
+
     }
 
     public void addToLibrary(song newSong){
         myLibrary.addSong(newSong);
-        System.out.println(newSong.songName + " added to Library");
+        //System.out.println(newSong.songName + " added to Library");
     }
 
     public void addToLibrary(ArrayList<song> playlist){
@@ -44,7 +54,7 @@ public class MusicPlayer {
 
     public void addToQueue(song newSong) {
         queue.add(newSong);
-        System.out.println("Songs added to queue");
+        System.out.println(newSong.songName + " - " + newSong.songAlbum + " by " + newSong.songArtist + " added to Queue");
     }
 
     public void addToQueue(ArrayList<song> playlist) {
@@ -57,19 +67,40 @@ public class MusicPlayer {
         System.out.println("Now Playing "+ currentSong.songName + " - " + currentSong.songAlbum + " - " + currentSong.songArtist);
     }
 
+
+
     public void likeOrDislikeSong() {
-       currentSong.liked = !currentSong.liked;
-       System.out.println(currentSong.songName + " Liked");
+        if (currentSong != null) {
+            currentSong.liked = !currentSong.liked;
+            System.out.println(currentSong.songName + " Liked");
+        }else {
+            System.out.println("There is no song currently selected to like");
+        }
+
     }
 
     public void nextSong() {
-        playedSongs.add(currentSong);
+        if (queue.isEmpty()){
+            System.out.println("No songs in queue");
+            return;
+        }
+        if (currentSong != null) {
+            playedSongs.add(currentSong);
+        }
+        if (currentSong != null) {
+            System.out.println("Song Skipped");
+        }
         currentSong = queue.get(0);
         queue.remove(0);
-        System.out.println("Now Playing "+ currentSong.songName + " - " + currentSong.songAlbum + " - " + currentSong.songArtist);
+
+        //System.out.println("Now Playing "+ currentSong.songName + " - " + currentSong.songAlbum + " - " + currentSong.songArtist);
     }
 
     public void prevSong() {
+        if (playedSongs.isEmpty()){
+            System.out.println("No Songs have been played");
+            return;
+        }
         queue.add(0, playedSongs.get(playedSongs.size()));
         currentSong = playedSongs.get(playedSongs.size());
         playedSongs.remove(currentSong);
@@ -77,6 +108,10 @@ public class MusicPlayer {
     }
 
     public void shuffleQueue() {
+        if (queue.isEmpty()){
+            System.out.println("Queue is empty");
+            return;
+        }
         ArrayList<song> originalQueue = queue;
         
         int index;
@@ -92,8 +127,24 @@ public class MusicPlayer {
         
     }
 
+    public void showSongInfo(){
+        if (currentSong != null){
 
+        } else {
+            System.out.println("No Song Currently Playing");
+        }
+    }
 
+    public void showQueue() {
+        if (!queue.isEmpty()){
+            for (int i = 0; i < queue.size(); i++){
+                System.out.println((i+1) + ". " + queue.get(i).songName + " - " + queue.get(i).songArtist);
+            }
+        }else{
+            System.out.println("Queue is empty");
+        }
+
+    }
 
 
 }
