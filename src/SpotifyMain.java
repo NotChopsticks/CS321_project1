@@ -96,8 +96,16 @@ public class SpotifyMain {
                     album = input;
 
                     song newSong = new song(name, artist, album);
-                    aPlayer.addToLibrary(newSong);
-                    System.out.println(newSong.songName + " - " + newSong.songAlbum + " by " + newSong.songArtist + " added to Music Library");
+                    System.out.println(newSong.songName + " - " + newSong.songAlbum + " by " + newSong.songArtist);
+                    System.out.println("Add to Library? (Y/N)");
+                    input = in.nextLine();
+                    input = input.toUpperCase();
+                    if (input.equals("Y")) {
+                        aPlayer.addToLibrary(newSong);
+                        System.out.println(newSong.songName + " - " + newSong.songAlbum + " by " + newSong.songArtist + " added to Music Library");
+                    } else {
+                        System.out.println("Operation Canceled");
+                    }
                     break;
 
                 case "PLAY":
