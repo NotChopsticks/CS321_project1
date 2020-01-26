@@ -162,7 +162,11 @@ public class SpotifyMain {
                     break;
 
                 case "DOWNLOAD":
-                    downloader.downloadSong(aPlayer.currentSong);
+                    if (aPlayer.currentSong != null) {
+                        downloader.downloadSong(aPlayer.currentSong);
+                    } else {
+                        System.out.println("No song to download");
+                    }
                     break;
 
                 default:
