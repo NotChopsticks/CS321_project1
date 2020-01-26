@@ -13,6 +13,7 @@ public class SpotifyMain {
         boolean paused = true;
         boolean songSelected = false;
         MusicPlayer aPlayer = new MusicPlayer();
+        Downloader downloader = new Downloader();
         //Library myLibrary = new Library();
         song Deja_Vu = new song("Deja Vu", "Dave Rodgers", "Super Eurobeat Presents Euromach 2");
         song Eye_of_The_Tiger = new song("Eye of The Tiger", "Survivor", "Eye of The Tiger");
@@ -81,12 +82,20 @@ public class SpotifyMain {
                     break;
 
                 case "ADDTOLIBRARY":
-                    System.out.println("Please enter the song information in 'name artist album' format");
+                    String name = "";
+                    String album = "";
+                    String artist = "";
+                    System.out.println("Please enter the song name");
                     input = in.nextLine();
-                    token = input.split(" ");
+                    name = input;
+                    System.out.println("Please enter the song artist");
+                    input = in.nextLine();
+                    artist = input;
+                    System.out.println("Please enter the song album");
+                    input = in.nextLine();
+                    album = input;
 
-
-                    song newSong = new song(token[0], token[1], token[2]);
+                    song newSong = new song(name, artist, album);
                     aPlayer.addToLibrary(newSong);
                     System.out.println(newSong.songName + " - " + newSong.songAlbum + " by " + newSong.songArtist + " added to Music Library");
                     break;
@@ -142,6 +151,10 @@ public class SpotifyMain {
                 case "SHUFFLE":
                     aPlayer.shuffleQueue();
 
+                    break;
+
+                case "DOWNLOAD":
+                    downloader.downloadSong(aPlayer.currentSong);
                     break;
 
                 default:
