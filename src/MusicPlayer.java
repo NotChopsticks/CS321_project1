@@ -33,6 +33,7 @@ public class MusicPlayer {
         queue = new ArrayList<>();
         playedSongs = new ArrayList<>();
         shuffler = new Random();
+        shuffledQueue = new ArrayList<>();
         currentSong = null;
         myLibrary = new Library();
 
@@ -115,11 +116,13 @@ public class MusicPlayer {
         ArrayList<song> originalQueue = queue;
         
         int index;
+        int numberOfSongs = queue.size();
+        for (int i = 0; i < numberOfSongs; i++) {
 
-        for (int i = 0; i < queue.size(); i++) {
             index = shuffler.nextInt(originalQueue.size());
             shuffledQueue.add(originalQueue.get(index));
             originalQueue.remove(index);
+
         }
         
         queue = shuffledQueue;
