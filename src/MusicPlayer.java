@@ -58,6 +58,27 @@ public class MusicPlayer {
         System.out.println(newSong.songName + " - " + newSong.songAlbum + " by " + newSong.songArtist + " added to Queue");
     }
 
+    public void addPlaylistToQueue() {
+        Scanner in = new Scanner(System.in);
+        String input;
+        String[] token;
+        System.out.println("Select a playlist");
+        Playlist<song> selected;
+        for (int i = 0; i < myLibrary.playlists.size(); i++) {
+            System.out.println((i+1) + ": " + myLibrary.playlists.get(i).playlistName);
+        }
+        input = in.nextLine();
+        token = input.split(" ");
+        int x = Integer.parseInt(token[0]);
+        if (x > 0 && x <= myLibrary.playlists.size()) {
+            selected = myLibrary.playlists.get(x-1);
+            queue.addAll(selected);
+            System.out.println("Playlist Added");
+        }
+
+    }
+
+
     public void addToQueue(ArrayList<song> playlist) {
         queue.addAll(playlist);
         System.out.println("Songs added to queue");
@@ -73,6 +94,11 @@ public class MusicPlayer {
     public void likeOrDislikeSong() {
         if (currentSong != null) {
             currentSong.liked = !currentSong.liked;
+            if (currentSong.liked){
+                myLibrary.addToLiked(currentSong);
+            } else {
+                myLibrary.liked.remove(currentSong);
+            }
             System.out.println(currentSong.songName + " Liked");
         }else {
             System.out.println("There is no song currently selected to like");

@@ -54,20 +54,21 @@ public class SpotifyMain {
             input = in.nextLine();
             token = input.split(" ");
             firstWord = token[0].toUpperCase();
-            switch (firstWord){
+            switch (firstWord) {
                 case "ADDTOQUEUE":
                     while (true) {
+
                         System.out.println("Please select a track with the 'add #' command");
                         for (int i = 0; i < aPlayer.myLibrary.MusicLibrary.size(); i++) {
-                            System.out.println((i+1) + ": " + aPlayer.myLibrary.MusicLibrary.get(i).songName + " - " + aPlayer.myLibrary.MusicLibrary.get(i).songArtist);
+                            System.out.println((i + 1) + ": " + aPlayer.myLibrary.MusicLibrary.get(i).songName + " - " + aPlayer.myLibrary.MusicLibrary.get(i).songArtist);
                         }
 
                         input = in.nextLine();
                         token = input.split(" ");
                         if (token[0].toUpperCase().equals("ADD")) {
                             int x = Integer.parseInt(token[1]);
-                            if (x > 0 && x <= aPlayer.myLibrary.MusicLibrary.size()){
-                                aPlayer.addToQueue(aPlayer.myLibrary.MusicLibrary.get(x-1));
+                            if (x > 0 && x <= aPlayer.myLibrary.MusicLibrary.size()) {
+                                aPlayer.addToQueue(aPlayer.myLibrary.MusicLibrary.get(x - 1));
 
                                 //aPlayer.queue.add(aPlayer.myLibrary.MusicLibrary.get(x-1));
                                 //System.out.println(aPlayer.myLibrary.MusicLibrary.get(x-1).songName + " by " + aPlayer.myLibrary.MusicLibrary.get(x-1).songArtist + " added to queue");
@@ -109,15 +110,15 @@ public class SpotifyMain {
                     break;
 
                 case "PLAY":
-                    if (aPlayer.queue.isEmpty() && aPlayer.currentSong == null){
+                    if (aPlayer.queue.isEmpty() && aPlayer.currentSong == null) {
                         System.out.println("Queue is empty. Please add songs to the queue before using the play command");
                         break;
                     }
-                    if (!songSelected && aPlayer.queue.get(0) != null){
+                    if (!songSelected && aPlayer.queue.get(0) != null) {
                         aPlayer.nextSong();
                         songSelected = true;
                     }
-                    if (playing){
+                    if (playing) {
                         System.out.println("Player already playing");
                     } else {
                         playing = true;
@@ -135,11 +136,11 @@ public class SpotifyMain {
                     break;
 
                 case "PAUSE":
-                    if (aPlayer.currentSong == null){
+                    if (aPlayer.currentSong == null) {
                         System.out.println("No song to pause");
                         break;
                     }
-                    if (paused){
+                    if (paused) {
                         System.out.println("Player already paused");
                     } else {
                         paused = true;
@@ -169,12 +170,29 @@ public class SpotifyMain {
                     }
                     break;
 
+                case "PRINTPLAYLIST":
+                    aPlayer.myLibrary.printPlaylist();
+                    break;
+
+                case "NEWPLAYLIST":
+                    System.out.println("Please Enter a Name:");
+                    input = in.nextLine();
+                    aPlayer.myLibrary.makeNewPlaylist(input);
+                    break;
+
+                case "ADDTOPLAYLIST":
+                    aPlayer.myLibrary.addToPlaylist();
+                    break;
+
+                case "PLAYPLAYLIST":
+                    aPlayer.addPlaylistToQueue();
+                    break;
+
                 default:
                     System.out.println("Invalid Command");
                     break;
 
             }
-
 
 
 
