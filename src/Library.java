@@ -46,6 +46,8 @@ public class Library {
 
     }
 
+    // method for displaying the songs in a playlist
+    // prints the songs in a selected playlist to the terminal
     public void printPlaylist() {
         System.out.println("Select a playlist");
         Playlist<song> selected;
@@ -63,6 +65,10 @@ public class Library {
         }
     }
 
+    // method for adding songs to a selected playlist
+    // uses a menu system to select the target playlist, choose a source from
+    // a library, playlist, or singular song, and then allows the selection of
+    // the song to add
     public void addToPlaylist(){
         System.out.println("Select a playlist");
         int selectedIndex = 0;
@@ -163,6 +169,9 @@ public class Library {
 
     }
 
+    // method for the creation of a new playlist
+    // takes a new playlist name as a parameter and names a new
+    // playlist object that
     public void makeNewPlaylist(String name) {
         Playlist<song> temp = new Playlist<>();
         temp.playlistName = name;
