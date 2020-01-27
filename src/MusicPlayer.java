@@ -6,29 +6,32 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
-
-
-//- Music Player
-//- Queue/Playlist
-//- Music Library
-// - Recommendeds
-// - Liking and disliking songs
-// - Downloading
-// - Shuffle and skip
-
-
+// Class containing the methods by which songs can be played, queued, shuffled, skipped,
+// liked, disliked, and other Spotify-related functions
+// Calls methods from other classes to perform some tasks
 public class MusicPlayer {
 
+    // array list that will hold queued songs
     ArrayList<song> queue;
+
+    // array list that stores the queue after it has been shuffled
     ArrayList<song> shuffledQueue;
+
+    // Random class for generating a shuffled playlist
     Random shuffler = null;
+
+    // The song object that the music player is currently playing
     song currentSong;
+
+    // array list that stores songs that have been played
     ArrayList<song> playedSongs;
+
+    // Library class for adding songs to the user's personal library
     Library myLibrary;
 
 
 
-
+    //Constructor method
     public MusicPlayer()  {
         queue = new ArrayList<>();
         playedSongs = new ArrayList<>();
@@ -40,11 +43,14 @@ public class MusicPlayer {
 
     }
 
+    // method for adding a new song to your music library
+    // calls the method addSong from the Library class
     public void addToLibrary(song newSong){
         myLibrary.addSong(newSong);
         //System.out.println(newSong.songName + " added to Library");
     }
 
+   
     public void addToLibrary(ArrayList<song> playlist){
         for (int i = 0; i < playlist.size(); i++) {
             myLibrary.addSong(playlist.get(i));
@@ -53,23 +59,31 @@ public class MusicPlayer {
 
     }
 
+    // method for queueing songs to be played
+    // takes a song name as a parameter
+    // necessary for playing songs at all
     public void addToQueue(song newSong) {
         queue.add(newSong);
         System.out.println(newSong.songName + " - " + newSong.songAlbum + " by " + newSong.songArtist + " added to Queue");
     }
 
+    // method for adding a playlist of songs to the queue
+    // takes a playlist array list as a parameter
     public void addToQueue(ArrayList<song> playlist) {
         queue.addAll(playlist);
         System.out.println("Songs added to queue");
     }
 
+    // method for playing a song
+    // takes a song as a parameter
     public void playSong(song newSong) {
         currentSong = newSong;
         System.out.println("Now Playing "+ currentSong.songName + " - " + currentSong.songAlbum + " - " + currentSong.songArtist);
     }
 
-
-
+    // method for liking or disliking a song
+    // takes a song's liked status and inverts it, or responds with a message
+    // if there is no song playing
     public void likeOrDislikeSong() {
         if (currentSong != null) {
             currentSong.liked = !currentSong.liked;
@@ -80,6 +94,9 @@ public class MusicPlayer {
 
     }
 
+    // method for skipping to the next song in the queue
+    // takes the next song in the queue and sets it to the current song playing
+    // responds with a message if there are no queued songs
     public void nextSong() {
         if (queue.isEmpty()){
             System.out.println("No songs in queue");
@@ -97,6 +114,9 @@ public class MusicPlayer {
         //System.out.println("Now Playing "+ currentSong.songName + " - " + currentSong.songAlbum + " - " + currentSong.songArtist);
     }
 
+    // method for skipping back to a previous song in the queue
+    // takes the last song played from playedSongs and sets that equal to currentSong
+    // if there have been no songs played, responds with a message
     public void prevSong() {
         if (playedSongs.isEmpty()){
             System.out.println("No Songs have been played");
@@ -108,6 +128,9 @@ public class MusicPlayer {
         System.out.println("Now Playing "+ currentSong.songName + " - " + currentSong.songAlbum + " - " + currentSong.songArtist);
     }
 
+    // method for shuffling queue into a randomly organized new queue
+    // relies on the Random class to generate a random index number for
+    // each song in the queue and assigning them to a new queue arraylist
     public void shuffleQueue() {
         if (queue.isEmpty()){
             System.out.println("Queue is empty");
@@ -130,6 +153,10 @@ public class MusicPlayer {
         
     }
 
+    // method that functions only to display if there are no songs playing.
+    // since the current song playing is always displayed, this method
+    // only functions to tell the user there is no song playing if they
+    // request the info of the song when nothing is playing.
     public void showSongInfo(){
         if (currentSong != null){
 
@@ -138,6 +165,8 @@ public class MusicPlayer {
         }
     }
 
+    // method for printing out the songs currently in the queue
+    // 
     public void showQueue() {
         if (!queue.isEmpty()){
             for (int i = 0; i < queue.size(); i++){

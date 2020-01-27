@@ -1,20 +1,43 @@
 
 import java.util.Scanner;
 
+// main class that runs the user interface
 public class SpotifyMain {
     public static void main(String[] args) {
+        // instance of Scanner class that takes user input
         Scanner in = new Scanner(System.in);
+
+        // string that stores user input
         String input;
+
+        // string for separating inputs into commands via cases
         String[] token;
+
+        // string for holding the first word inputted by the user
         String firstWord;
+
+        // string for holding the second word inputted by the user
         String secondWord;
+        
+        // string for holding the third word inputted by the user
         String thirdWord;
+
+        // boolean for the status of whether or not a song is playing initialized to false
         boolean playing = false;
+
+        // boolean for the status of whether or not a song is paused initialized to true
         boolean paused = true;
+
+        // boolean for the status of whether or not a song has been selected initialized to false
         boolean songSelected = false;
+
+        // MusicPlayer class instance that will be used by main to play music
         MusicPlayer aPlayer = new MusicPlayer();
+
+        // Downloader class instance that will be used by main to download music
         Downloader downloader = new Downloader();
-        //Library myLibrary = new Library();
+
+        // Creating a few song objects as stand-ins for the actual Spotify catalog
         song Deja_Vu = new song("Deja Vu", "Dave Rodgers", "Super Eurobeat Presents Euromach 2");
         song Eye_of_The_Tiger = new song("Eye of The Tiger", "Survivor", "Eye of The Tiger");
         song Hotel_California = new song("Hotel California", "The Eagles", "Hotel California");
@@ -30,7 +53,8 @@ public class SpotifyMain {
 
 
 
-
+        // while loop that perpetually functions as the music player until the program
+        // is terminated
         while(true) {
             if (aPlayer.currentSong == null){
                 songSelected = false;
@@ -162,11 +186,7 @@ public class SpotifyMain {
                     break;
 
                 case "DOWNLOAD":
-                    if (aPlayer.currentSong != null) {
-                        downloader.downloadSong(aPlayer.currentSong);
-                    } else {
-                        System.out.println("No song to download");
-                    }
+                    downloader.downloadSong(aPlayer.currentSong);
                     break;
 
                 default:
