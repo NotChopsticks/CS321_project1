@@ -54,7 +54,8 @@ public class SpotifyMain {
 
 
         // while loop that perpetually functions as the music player until the program
-        // is terminated
+        // is terminated. Takes text inputs as user commands and uses various use cases
+        // as individual command executions
         while(true) {
             if (aPlayer.currentSong == null){
                 songSelected = false;

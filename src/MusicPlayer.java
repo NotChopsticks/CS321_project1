@@ -50,7 +50,9 @@ public class MusicPlayer {
         //System.out.println(newSong.songName + " added to Library");
     }
 
-   
+   // method for adding multiple songs to the library
+   // despite the parameter being playlist, there is no relation to
+   // the playlist feature.
     public void addToLibrary(ArrayList<song> playlist){
         for (int i = 0; i < playlist.size(); i++) {
             myLibrary.addSong(playlist.get(i));
@@ -91,7 +93,9 @@ public class MusicPlayer {
     }
 
 
-
+    // method for adding multiple songs to queue
+    // despite the parameter being "playlist" this has nothing
+    // to do with playlists
     public void addToQueue(ArrayList<song> playlist) {
         queue.addAll(playlist);
         System.out.println("Songs added to queue");
@@ -193,8 +197,8 @@ public class MusicPlayer {
         }
     }
 
-    // method for printing out the songs currently in the queue
-    // 
+    // method for displaying songs currently in the queue
+    // prints list of queued songs to the screen in order of their queueing
     public void showQueue() {
         if (!queue.isEmpty()){
             for (int i = 0; i < queue.size(); i++){
